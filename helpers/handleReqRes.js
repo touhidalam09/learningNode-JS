@@ -40,25 +40,26 @@ handle.handleReqRes = (req, res) => {
     ? routes[trimmedPath]
     : notFoundHandler;
 
-  chosenHandler(requestProperties, (statusCode, payload) => {
-    statusCode = typeof statusCode === "number" ? statusCode : 500;
-    payload = typeof payload === "object" ? payload : {};
-
-    const payloadString = JSON.stringify(payload);
-
-    // return the final response
-    res.writeHead(statusCode);
-    res.end(payloadString);
-  });
-
   req.on("data", (buffer) => {
     realData += decode.write(buffer);
   });
   req.on("end", () => {
     realData += decode.end();
-    res.write(realData);
+
+    chosenHandler(requestProperties, (statusCode, payload) => {
+      statusCode = typeof statusCode === "number" ? statusCode : 500;
+      payload = typeof payload === "object" ? payload : {};
+
+      const payloadString = JSON.stringify(payload);
+
+      // return the final response
+      res.writeHead(statusCode);
+      res.end(payloadString);
+    });
+
+    // res.write(realData);
     // response handle
-    res.end(" Raw Node mon!!");
+    // res.end(" Raw Node mon!!");
   });
 };
 module.exports = handle;

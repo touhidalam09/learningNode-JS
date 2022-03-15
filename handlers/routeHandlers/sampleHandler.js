@@ -9,7 +9,6 @@
 const handle = {};
 
 handle.sampleHandler = (requestProperties, callback) => {
-  console.log(requestProperties);
   callback(200, {
     message: "THis is sample",
   });
