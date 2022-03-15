@@ -21,4 +21,4 @@
   - ### `main :`
     - Initialize setup project, core node js Folder added
   - ### `rawNode :`
-    - Create Server,
+    - Create Server, Parsing Request, Route setup, Environment Setup
