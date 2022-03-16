@@ -7,6 +7,7 @@
 
 // devDependencies
 const { sampleHandler } = require("./handlers/routeHandlers/sampleHandler");
+
 // Object model scaffolding
 const routes = {
   sample: sampleHandler,
